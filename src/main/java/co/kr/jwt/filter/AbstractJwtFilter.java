@@ -12,14 +12,12 @@ import java.util.Objects;
 
 public abstract class AbstractJwtFilter extends OncePerRequestFilter {
   protected final JwtUtils jwtUtils;
-  protected final String header;
 
-  protected AbstractJwtFilter(JwtUtils jwtUtils, String header) {
-    if(Objects.isNull(jwtUtils) && Objects.isNull(header)) {
+  protected AbstractJwtFilter(JwtUtils jwtUtils) {
+    if(Objects.isNull(jwtUtils)) {
       throw new IllegalArgumentException("JwtUtils and Header must not be null.");
     }
     this.jwtUtils = jwtUtils;
-    this.header = header;
   }
 
   protected abstract void validateJwt(HttpServletRequest request);
